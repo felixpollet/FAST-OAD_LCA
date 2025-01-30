@@ -126,6 +126,11 @@ class LCAcore(om.ExplicitComponent):
     parameters in a very fast way compared to conventional LCA.
     """
 
+    # Cache for storing LCA model, methods and lambdas.
+    # This avoids recompiling everything if already done in previous setup of FAST-OAD
+    # One downside is that the cache is shared between all instances of LCAcore, so that only one LCA model can be used
+    _cache = {}
+
     def initialize(self):
         # Declare options
         self.options.declare("configuration_file", default=None, types=str)
@@ -133,21 +138,37 @@ class LCAcore(om.ExplicitComponent):
         self.options.declare("nonfloat_params", default=None, types=dict)
 
     def setup(self):
-        # Read LCA configuration file, build model and get methods
-        _, self.model, self.methods = LCAProblemConfigurator(self.options['configuration_file']).generate()
+        if not {'model', 'methods', 'lambdas', 'partial_lambdas_dict'}.issubset(LCAcore._cache):
+            # Load LCA configuration file, build model and get LCIA methods
+            _, model, methods = LCAProblemConfigurator(self.options['configuration_file']).generate()
+            # _, self.model, self.methods = LCAProblemConfigurator(self.options['configuration_file']).generate()
 
-        # Dict for storing LCA parameters and their values
-        self.parameters = dict()
+            # Compile expressions for impacts
+            print("Compiling LCIA functions...")
+            lambdas = agb.lca._preMultiLCAAlgebric(model, methods, axis=self.options['axis'])
+            # TODO: enable multiple axes to be declared, e.g. to ventilate impacts both by phase and component.
 
-        # Compile expressions for impacts
-        self.lambdas = agb.lca._preMultiLCAAlgebric(self.model, self.methods, axis=self.options['axis'])
-        # TODO: enable multiple axes to be declared, e.g. to ventilate impacts both by phase and component.
+            # Compile expressions for partial derivatives of impacts w.r.t. parameters
+            partial_lambdas_dict = _preMultiLCAAlgebricPartials(model, methods, axis=self.options['axis'])
+            print("Done.")
 
-        # Compile expressions for partial derivatives of impacts w.r.t. parameters
-        self.partial_lambdas_dict = _preMultiLCAAlgebricPartials(self.model, self.methods, axis=self.options['axis'])
+            # Set cache
+            LCAcore._cache['model'] = model
+            LCAcore._cache['methods'] = methods
+            LCAcore._cache['lambdas'] = lambdas
+            LCAcore._cache['partial_lambdas_dict'] = partial_lambdas_dict
+
+        # Get cached values
+        self.model = LCAcore._cache['model']
+        self.methods = LCAcore._cache['methods']
+        self.lambdas = LCAcore._cache['lambdas']
+        self.partial_lambdas_dict = LCAcore._cache['partial_lambdas_dict']
 
         # Get axis keys to ventilate results by e.g. life-cycle phase
         self.axis_keys = self.lambdas[0].axis_keys
+
+        # Dict for storing LCA parameters and their values
+        self.parameters = dict()
 
         # Declare LCA parameters as inputs
         for p in agb.all_params().values():
@@ -166,7 +187,7 @@ class LCAcore(om.ExplicitComponent):
 
         # Declare outputs for each method and axis key
         for m in self.methods:
-            m_name = re.sub(r': |/| ', '_', m[1])
+            m_name = bw_to_fastoad_lcia_name(m)
             self.add_output(LCA_CHARACTERIZATION_KEY + m_name,
                             units=None,  # NB: LCA units not supported by OpenMDAO so set in description
                             desc=bw.Method(m).metadata['unit'] + "/FU")
@@ -198,7 +219,7 @@ class LCAcore(om.ExplicitComponent):
 
         # Store results in outputs
         for m in res:  # for each LCIA method
-            m_name = re.sub(r': |/| ', '_', m.split(' - ')[0])
+            m_name = agb_to_fastoad_lcia_name(m)
             if self.axis_keys:  # results by phase/contributor
                 s = 0
                 for axis_key in self.axis_keys:
@@ -222,7 +243,8 @@ class LCAcore(om.ExplicitComponent):
         # Compute partials
         for param_name, res_param in res.items():
             for m in res_param:
-                m_name = re.sub(r': |/| ', '_', m.split(' - ')[0])
+                # m_name = re.sub(r': |/| ', '_', m.split(' - ')[0])
+                m_name = agb_to_fastoad_lcia_name(m)
                 input_name = param_name.replace('__', ':')
                 if self.axis_keys:  # results by phase/contributor
                     s = 0
@@ -396,3 +418,27 @@ def _preMultiLCAAlgebricPartials(model, methods, alpha=1, axis=None):
                 ]
                 for param in agb.all_params().values()
             }
+
+
+def agb_to_fastoad_lcia_name(method_name: str) -> str:
+    """
+    Convert a name from lca_algebraic to FAST-OAD_LCA naming convention.
+    Used for methods names as returned by compute_impacts from lca_algebraic.
+    """
+    name = method_name.split('[')[0]  # remove units (keep only method name)
+    name = name.replace(' - ', ':')  # replace separator
+    name = name.replace(')', '').replace('(', '')  # remove parentheses
+    name = re.sub(r': |/| |, ', '_', name)  # replace other elements by underscores
+    name = name.rstrip('_')  # remove trailing underscores
+    return name
+
+def bw_to_fastoad_lcia_name(method_name: str) -> str:
+    """
+    Convert a name from lca_algebraic to FAST-OAD_LCA naming convention.
+    Used for methods names expressed as tuples (brightway convention).
+    """
+    name = method_name[-2] + ':' + method_name[-1]  # merge last two elements of method tuple
+    name = name.replace(')', '').replace('(', '')  # remove parentheses
+    name = re.sub(r': |/| |, ', '_', name)  # replace other elements by underscores
+    name = name.rstrip('_')  # remove trailing underscores
+    return name
