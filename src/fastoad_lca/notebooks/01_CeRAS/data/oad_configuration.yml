@@ -1,0 +1,22 @@
+title: Sample configuration file for the LCA plugin
+
+# List of folder paths where user added custom registered OpenMDAO components
+module_folders:
+
+# Input and output files
+input_file: ../workdir/problem_inputs.xml
+output_file: ../workdir/problem_outputs.xml
+
+# Definition of OpenMDAO model
+# Although "model" is a mandatory name for the top level of the model, its
+# subcomponents can be freely named by user
+model:
+    environmental_impacts:
+        id: fastoad.plugin.lca
+        configuration_file: './CeRAS_LCA.yml'  # path to the LCA configuration file
+        axis: 'phase'  # return impacts per contributor (e.g. "phase"), according to tags in the LCA model
+        normalization: False  # normalize results
+        weighting: False  # weight and aggregate results into a single score
+        nonfloat_params:  # provide values for non-float LCA parameters
+            model: 'remind'
+            pathway: 'SSP2-PkBudg1150'

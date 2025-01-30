@@ -1,0 +1,401 @@
+<FASTOAD_model>
+  <data>
+    <TLAR>
+      <cruise_mach is_input="True">0.78<!--Input defined by the mission.--></cruise_mach>
+    </TLAR>
+    <propulsion>
+      <MTO_thrust units="N" is_input="True">117880.0<!--maximum thrust of one engine at sea level--></MTO_thrust>
+      <climb>
+        <thrust_rate is_input="True">0.93<!--Input defined by the mission.--></thrust_rate>
+      </climb>
+      <descent>
+        <thrust_rate is_input="True">0.18<!--Input defined by the mission.--></thrust_rate>
+      </descent>
+      <initial_climb>
+        <thrust_rate is_input="True">1.0<!--Input defined by the mission.--></thrust_rate>
+      </initial_climb>
+      <rubber_engine>
+        <bypass_ratio is_input="True">4.9<!--bypass ratio for rubber engine model--></bypass_ratio>
+        <delta_t4_climb is_input="True">-50.0<!--As it is a delta, unit is K or &#176;C, but is not specified to avoid OpenMDAO making unwanted conversion--></delta_t4_climb>
+        <delta_t4_cruise is_input="True">-100.0<!--As it is a delta, unit is K or &#176;C, but is not specified to avoid OpenMDAO making unwanted conversion--></delta_t4_cruise>
+        <design_altitude units="m" is_input="True">10058.4<!--design altitude for rubber engine model--></design_altitude>
+        <maximum_mach is_input="True">0.85<!--maximum Mach number for rubber engine model--></maximum_mach>
+        <overall_pressure_ratio is_input="True">32.6<!--Overall pressure ratio for rubber engine model--></overall_pressure_ratio>
+        <turbine_inlet_temperature units="degK" is_input="True">1633.0<!--design turbine inlet temperature (T4) for rubber engine model--></turbine_inlet_temperature>
+      </rubber_engine>
+      <taxi>
+        <thrust_rate is_input="True">0.3<!--Input defined by the mission.--></thrust_rate>
+      </taxi>
+    </propulsion>
+    <geometry>
+      <aircraft>
+        <wetted_area units="m**2" is_input="True">777.2426963010913<!--total wetted area--></wetted_area>
+      </aircraft>
+      <fuselage>
+        <length units="m" is_input="True">37.507364<!--total fuselage length--></length>
+        <maximum_height units="m" is_input="True">4.05988<!--maximum fuselage height--></maximum_height>
+        <maximum_width units="m" is_input="True">3.91988<!--maximum fuselage width--></maximum_width>
+        <wetted_area units="m**2" is_input="True">401.95600094323777<!--wetted area of fuselage--></wetted_area>
+      </fuselage>
+      <horizontal_tail>
+        <sweep_25 units="deg" is_input="True">28.0<!--sweep angle at 25% chord of horizontal tail--></sweep_25>
+        <thickness_ratio is_input="True">0.1<!--thickness ratio of horizontal tail--></thickness_ratio>
+        <wetted_area units="m**2" is_input="True">66.80513694660253<!--wetted area of horizontal tail--></wetted_area>
+        <MAC>
+          <length units="m" is_input="True">3.060839041625671<!--mean aerodynamic chord length of horizontal tail--></length>
+        </MAC>
+      </horizontal_tail>
+      <vertical_tail>
+        <sweep_25 units="deg" is_input="True">35.0<!--sweep angle at 25% chord of vertical tail--></sweep_25>
+        <thickness_ratio is_input="True">0.1<!--thickness ratio of vertical tail--></thickness_ratio>
+        <wetted_area units="m**2" is_input="True">53.970797554771345<!--wetted area of vertical tail--></wetted_area>
+        <MAC>
+          <length units="m" is_input="True">4.209062839132379<!--mean aerodynamic chord length of vertical tail--></length>
+        </MAC>
+      </vertical_tail>
+      <wing>
+        <area units="m**2" is_input="True">121.55346683550974<!--wing reference area--></area>
+        <aspect_ratio is_input="True">9.48<!--wing aspect ratio--></aspect_ratio>
+        <span units="m" is_input="True">33.945940345916156<!--wing span--></span>
+        <sweep_25 units="deg" is_input="True">24.54<!--sweep angle at 25% chord of wing--></sweep_25>
+        <thickness_ratio is_input="True">0.12698637971822446<!--mean thickness ratio of wing--></thickness_ratio>
+        <wetted_area units="m**2" is_input="True">196.16592076806643<!--wetted area of wing--></wetted_area>
+        <MAC>
+          <length units="m" is_input="True">4.159415060764507<!--length of mean aerodynamic chord of wing--></length>
+        </MAC>
+        <root>
+          <chord units="m" is_input="True">5.987557397236886<!--chord length at wing root--></chord>
+        </root>
+        <tip>
+          <chord units="m" is_input="True">1.4662836500878342<!--chord length at wing tip--></chord>
+          <thickness_ratio is_input="True">0.10920828655767303<!--thickness ratio at wing tip--></thickness_ratio>
+        </tip>
+      </wing>
+      <propulsion>
+        <engine>
+          <count is_input="True">2.0<!--number of engines--></count>
+        </engine>
+        <fan>
+          <length units="m" is_input="True">3.1268896238914476<!--engine length--></length>
+        </fan>
+        <nacelle>
+          <length units="m" is_input="True">5.2114827064857465<!--nacelle length--></length>
+          <wetted_area units="m**2" is_input="True">21.6092<!--wetted area of nacelle--></wetted_area>
+        </nacelle>
+        <pylon>
+          <length units="m" is_input="True">5.732630977134321<!--pylon length--></length>
+          <wetted_area units="m**2" is_input="True">7.56322<!--wetted area of pylon--></wetted_area>
+        </pylon>
+      </propulsion>
+    </geometry>
+    <mission>
+      <SPP_design>
+        <TOW units="kg" is_input="False">74121.87281295808<!--Loaded fuel at beginning for mission "SPP_design"--></TOW>
+        <ZFW units="kg" is_input="False">55520.23826286344<!--Zero Fuel Weight for mission "SPP_design"--></ZFW>
+        <block_fuel units="kg" is_input="False">18963.506910146774<!--Loaded fuel at beginning for mission "SPP_design"_inp_data:mission:SPP_design:block_fuel--></block_fuel>
+        <consumed_fuel_before_input_weight units="kg" is_input="False">361.9481830622244<!--consumed fuel quantity before target mass defined for "SPP_design", if any (e.g. TakeOff Weight)--></consumed_fuel_before_input_weight>
+        <distance units="m" is_input="False">5818362.024655736<!--covered ground distance during mission "SPP_design"--></distance>
+        <duration units="s" is_input="False">28312.646630709634<!--duration of mission "SPP_design"--></duration>
+        <fuel units="kg" is_input="False">18506.803377705102<!--burned fuel during mission "SPP_design"--></fuel>
+        <needed_block_fuel units="kg" is_input="False">18963.506910146774<!--Needed fuel to complete mission "SPP_design", including reserve fuel--></needed_block_fuel>
+        <payload units="kg" is_input="True">13608.0<!--Zero Fuel Weight for mission "SPP_design"_inp_data:mission:SPP_design:payload--></payload>
+        <specific_burned_fuel units="1/nmi" is_input="False">0.0005067508977451385</specific_burned_fuel>
+        <diversion>
+          <distance units="m" is_input="True">370400.0<!--Input defined by the mission.--></distance>
+          <duration units="s" is_input="False">2122.31550765218<!--duration of route "diversion" in mission "SPP_design"--></duration>
+          <fuel units="kg" is_input="False">1364.4415595936807<!--burned fuel during route "diversion" in mission "SPP_design"--></fuel>
+          <cruise>
+            <distance units="m" is_input="False">100438.35584316868<!--covered ground distance during phase "cruise" of route "diversion" in mission "SPP_design"--></distance>
+            <duration units="s" is_input="False">459.06446703322945<!--duration of phase "cruise" of route "diversion" in mission "SPP_design"--></duration>
+            <fuel units="kg" is_input="False">351.29218275487074<!--burned fuel during phase "cruise" of route "diversion" in mission "SPP_design"--></fuel>
+          </cruise>
+          <descent>
+            <distance units="m" is_input="False">206720.577823543<!--covered ground distance during phase "descent" of route "diversion" in mission "SPP_design"--></distance>
+            <duration units="s" is_input="False">1305.1755651387793<!--duration of phase "descent" of route "diversion" in mission "SPP_design"--></duration>
+            <fuel units="kg" is_input="False">418.6072607191818<!--burned fuel during phase "descent" of route "diversion" in mission "SPP_design"--></fuel>
+          </descent>
+          <diversion_climb>
+            <distance units="m" is_input="False">63241.19518722128<!--covered ground distance during phase "diversion_climb" of route "diversion" in mission "SPP_design"--></distance>
+            <duration units="s" is_input="False">358.075475480171<!--duration of phase "diversion_climb" of route "diversion" in mission "SPP_design"--></duration>
+            <fuel units="kg" is_input="False">594.5421161196282<!--burned fuel during phase "diversion_climb" of route "diversion" in mission "SPP_design"--></fuel>
+          </diversion_climb>
+        </diversion>
+        <holding>
+          <distance units="m" is_input="False">354995.51639653277<!--covered ground distance during phase "holding" in mission "SPP_design"--></distance>
+          <duration units="s" is_input="True">2700.0<!--Input defined by the mission.--></duration>
+          <fuel units="kg" is_input="False">1375.549195445361<!--burned fuel during phase "holding" in mission "SPP_design"--></fuel>
+        </holding>
+        <landing>
+          <flap_angle units="deg">30.0<!--flap angle during landing phase in sizing mission--></flap_angle>
+          <slat_angle units="deg">20.0<!--slat angle during landing phase in sizing mission--></slat_angle>
+        </landing>
+        <main_route>
+          <distance units="m" is_input="False">5092966.37940527<!--covered ground distance during route "main_route" in mission "SPP_design"--></distance>
+          <duration units="s" is_input="False">22650.331123057455<!--duration of route "main_route" in mission "SPP_design"--></duration>
+          <fuel units="kg" is_input="False">15223.9328673524<!--burned fuel during route "main_route" in mission "SPP_design"--></fuel>
+          <range units="m" is_input="True">5093000.0<!--Input defined by the mission.--></range>
+          <climb>
+            <distance units="m" is_input="False">255325.02890515252<!--covered ground distance during phase "climb" of route "main_route" in mission "SPP_design"--></distance>
+            <duration units="s" is_input="False">1214.0115254004832<!--duration of phase "climb" of route "main_route" in mission "SPP_design"--></duration>
+            <fuel units="kg" is_input="False">1612.9646609279444<!--burned fuel during phase "climb" of route "main_route" in mission "SPP_design"--></fuel>
+          </climb>
+          <cruise>
+            <distance units="m" is_input="False">4541147.134141184<!--covered ground distance during phase "cruise" of route "main_route" in mission "SPP_design"--></distance>
+            <duration units="s" is_input="False">19722.769425602262<!--duration of phase "cruise" of route "main_route" in mission "SPP_design"--></duration>
+            <fuel units="kg" is_input="False">12976.694426030452<!--burned fuel during phase "cruise" of route "main_route" in mission "SPP_design"--></fuel>
+          </cruise>
+          <descent>
+            <distance units="m" is_input="False">290739.13980425335<!--covered ground distance during phase "descent" of route "main_route" in mission "SPP_design"--></distance>
+            <duration units="s" is_input="False">1660.4649779622086<!--duration of phase "descent" of route "main_route" in mission "SPP_design"--></duration>
+            <fuel units="kg" is_input="False">504.4832191266687<!--burned fuel during phase "descent" of route "main_route" in mission "SPP_design"--></fuel>
+          </descent>
+          <initial_climb>
+            <distance units="m" is_input="False">5755.076554680083<!--covered ground distance during phase "initial_climb" of route "main_route" in mission "SPP_design"--></distance>
+            <duration units="s" is_input="False">53.08519409250039<!--duration of phase "initial_climb" of route "main_route" in mission "SPP_design"--></duration>
+            <fuel units="kg" is_input="False">129.79056126733485<!--burned fuel during phase "initial_climb" of route "main_route" in mission "SPP_design"--></fuel>
+          </initial_climb>
+        </main_route>
+        <reserve>
+          <fuel units="kg" is_input="False">456.7035324415192<!--reserve fuel for mission "SPP_design"--></fuel>
+        </reserve>
+        <takeoff>
+          <V2 units="m/s" is_input="True">79.3<!--Input defined by the mission.--></V2>
+          <altitude units="m">0.0<!--altitude at takeoff in sizing mission--></altitude>
+          <distance units="m" is_input="False">0.0<!--covered ground distance during phase "takeoff" in mission "SPP_design"--></distance>
+          <duration units="s" is_input="True">0.0<!--Input defined by the mission.--></duration>
+          <flap_angle units="deg">10.0<!--flap angle during takeoff phase in sizing mission--></flap_angle>
+          <fuel units="kg" is_input="True">82.4<!--Input defined by the mission.--></fuel>
+          <safety_altitude units="ft" is_input="True">35.0<!--Input defined by the mission.--></safety_altitude>
+          <slat_angle units="deg">18.0<!--slat angle during takeoff phase in sizing mission--></slat_angle>
+        </takeoff>
+        <taxi_in>
+          <distance units="m" is_input="False">0.0<!--covered ground distance during phase "taxi_in" in mission "SPP_design"--></distance>
+          <duration units="s" is_input="True">300.0<!--Input defined by the mission.--></duration>
+          <fuel units="kg" is_input="False">180.93157225139294<!--burned fuel during phase "taxi_in" in mission "SPP_design"--></fuel>
+        </taxi_in>
+        <taxi_out>
+          <altitude units="ft" is_input="True">0.0<!--Input defined by the mission.--></altitude>
+          <distance units="m" is_input="False">0.0<!--covered ground distance during phase "taxi_out" in mission "SPP_design"--></distance>
+          <duration units="s" is_input="True">540.0<!--Input defined by the mission.--></duration>
+          <fuel units="kg" is_input="False">279.5481830622739<!--burned fuel during phase "taxi_out" in mission "SPP_design"--></fuel>
+          <thrust_rate is_input="True">0.25<!--Input defined by the mission.--></thrust_rate>
+          <true_airspeed units="m/s" is_input="True">0.0<!--Input defined by the mission.--></true_airspeed>
+        </taxi_out>
+      </SPP_design>
+      <SPP_study>
+        <TOW units="kg" is_input="False">61432.9934101511<!--Loaded fuel at beginning for mission "SPP_study"--></TOW>
+        <ZFW units="kg" is_input="False">55520.23826286344<!--Zero Fuel Weight for mission "SPP_study"--></ZFW>
+        <block_fuel units="kg" is_input="False">6274.697996274855<!--Loaded fuel at beginning for mission "SPP_study"_inp_data:mission:SPP_study:block_fuel--></block_fuel>
+        <consumed_fuel_before_input_weight units="kg" is_input="False">361.9481830622244<!--consumed fuel quantity before target mass defined for "SPP_study", if any (e.g. TakeOff Weight)--></consumed_fuel_before_input_weight>
+        <distance units="m" is_input="False">1651397.6766880932<!--covered ground distance during mission "SPP_study"--></distance>
+        <duration units="s" is_input="False">10190.11212064646<!--duration of mission "SPP_study"--></duration>
+        <fuel units="kg" is_input="False">6187.2930106641725<!--burned fuel during mission "SPP_study"--></fuel>
+        <needed_block_fuel units="kg" is_input="False">6274.697996274855<!--Needed fuel to complete mission "SPP_study", including reserve fuel--></needed_block_fuel>
+        <payload units="kg" is_input="True">13608.0<!--Zero Fuel Weight for mission "SPP_study"_inp_data:mission:SPP_study:payload--></payload>
+        <specific_burned_fuel units="1/nmi" is_input="False">0.0009222052126141337</specific_burned_fuel>
+        <diversion>
+          <distance units="m" is_input="True">370400.0<!--Input defined by the mission.--></distance>
+          <duration units="s" is_input="False">2123.417905007019<!--duration of route "diversion" in mission "SPP_study"--></duration>
+          <fuel units="kg" is_input="False">1360.5833171708437<!--burned fuel during route "diversion" in mission "SPP_study"--></fuel>
+          <cruise>
+            <distance units="m" is_input="False">100561.7489165148<!--covered ground distance during phase "cruise" of route "diversion" in mission "SPP_study"--></distance>
+            <duration units="s" is_input="False">459.6284485418464<!--duration of phase "cruise" of route "diversion" in mission "SPP_study"--></duration>
+            <fuel units="kg" is_input="False">351.02756596935797<!--burned fuel during phase "cruise" of route "diversion" in mission "SPP_study"--></fuel>
+          </cruise>
+          <descent>
+            <distance units="m" is_input="False">207129.32177445153<!--covered ground distance during phase "descent" of route "diversion" in mission "SPP_study"--></distance>
+            <duration units="s" is_input="False">1308.6721810565432<!--duration of phase "descent" of route "diversion" in mission "SPP_study"--></duration>
+            <fuel units="kg" is_input="False">419.89207561531657<!--burned fuel during phase "descent" of route "diversion" in mission "SPP_study"--></fuel>
+          </descent>
+          <diversion_climb>
+            <distance units="m" is_input="False">62709.063418296515<!--covered ground distance during phase "diversion_climb" of route "diversion" in mission "SPP_study"--></distance>
+            <duration units="s" is_input="False">355.1172754086292<!--duration of phase "diversion_climb" of route "diversion" in mission "SPP_study"--></duration>
+            <fuel units="kg" is_input="False">589.6636755861691<!--burned fuel during phase "diversion_climb" of route "diversion" in mission "SPP_study"--></fuel>
+          </diversion_climb>
+        </diversion>
+        <holding>
+          <distance units="m" is_input="False">354995.5163965118<!--covered ground distance during phase "holding" in mission "SPP_study"--></distance>
+          <duration units="s" is_input="True">2700.0<!--Input defined by the mission.--></duration>
+          <fuel units="kg" is_input="False">1369.8486318573123<!--burned fuel during phase "holding" in mission "SPP_study"--></fuel>
+        </holding>
+        <landing>
+          <flap_angle units="deg">30.0<!--flap angle during landing phase in sizing mission--></flap_angle>
+          <slat_angle units="deg">20.0<!--slat angle during landing phase in sizing mission--></slat_angle>
+        </landing>
+        <main_route>
+          <distance units="m" is_input="False">926002.0261823186<!--covered ground distance during route "main_route" in mission "SPP_study"--></distance>
+          <duration units="s" is_input="False">4526.694215639441<!--duration of route "main_route" in mission "SPP_study"--></duration>
+          <fuel units="kg" is_input="False">2913.9813063224137<!--burned fuel during route "main_route" in mission "SPP_study"--></fuel>
+          <range units="m" is_input="True">926000.0<!--Input defined by the mission.--></range>
+          <climb>
+            <distance units="m" is_input="False">198837.02738043095<!--covered ground distance during phase "climb" of route "main_route" in mission "SPP_study"--></distance>
+            <duration units="s" is_input="False">946.3306234558916<!--duration of phase "climb" of route "main_route" in mission "SPP_study"--></duration>
+            <fuel units="kg" is_input="False">1235.5086003012839<!--burned fuel during phase "climb" of route "main_route" in mission "SPP_study"--></fuel>
+          </climb>
+          <cruise>
+            <distance units="m" is_input="False">418244.9409769458<!--covered ground distance during phase "cruise" of route "main_route" in mission "SPP_study"--></distance>
+            <duration units="s" is_input="False">1817.231071666389<!--duration of phase "cruise" of route "main_route" in mission "SPP_study"--></duration>
+            <fuel units="kg" is_input="False">1061.2408240290679<!--burned fuel during phase "cruise" of route "main_route" in mission "SPP_study"--></fuel>
+          </cruise>
+          <descent>
+            <distance units="m" is_input="False">304433.3647637693<!--covered ground distance during phase "descent" of route "main_route" in mission "SPP_study"--></distance>
+            <duration units="s" is_input="False">1721.76717614461<!--duration of phase "descent" of route "main_route" in mission "SPP_study"--></duration>
+            <fuel units="kg" is_input="False">516.062543694854<!--burned fuel during phase "descent" of route "main_route" in mission "SPP_study"--></fuel>
+          </descent>
+          <initial_climb>
+            <distance units="m" is_input="False">4486.693061172462<!--covered ground distance during phase "initial_climb" of route "main_route" in mission "SPP_study"--></distance>
+            <duration units="s" is_input="False">41.365344372550226<!--duration of phase "initial_climb" of route "main_route" in mission "SPP_study"--></duration>
+            <fuel units="kg" is_input="False">101.16933829720801<!--burned fuel during phase "initial_climb" of route "main_route" in mission "SPP_study"--></fuel>
+          </initial_climb>
+        </main_route>
+        <reserve>
+          <fuel units="kg" is_input="False">87.40498561062122<!--reserve fuel for mission "SPP_study"--></fuel>
+        </reserve>
+        <takeoff>
+          <V2 units="m/s" is_input="True">79.3<!--Input defined by the mission.--></V2>
+          <altitude units="m">0.0<!--altitude at takeoff in sizing mission--></altitude>
+          <distance units="m" is_input="False">0.0<!--covered ground distance during phase "takeoff" in mission "SPP_study"--></distance>
+          <duration units="s" is_input="True">0.0<!--Input defined by the mission.--></duration>
+          <flap_angle units="deg">10.0<!--flap angle during takeoff phase in sizing mission--></flap_angle>
+          <fuel units="kg" is_input="True">82.4<!--Input defined by the mission.--></fuel>
+          <safety_altitude units="ft" is_input="True">35.0<!--Input defined by the mission.--></safety_altitude>
+          <slat_angle units="deg">18.0<!--slat angle during takeoff phase in sizing mission--></slat_angle>
+        </takeoff>
+        <taxi_in>
+          <distance units="m" is_input="False">0.0<!--covered ground distance during phase "taxi_in" in mission "SPP_study"--></distance>
+          <duration units="s" is_input="True">300.0<!--Input defined by the mission.--></duration>
+          <fuel units="kg" is_input="False">180.93157225139294<!--burned fuel during phase "taxi_in" in mission "SPP_study"--></fuel>
+        </taxi_in>
+        <taxi_out>
+          <altitude units="ft" is_input="True">0.0<!--Input defined by the mission.--></altitude>
+          <distance units="m" is_input="False">0.0<!--covered ground distance during phase "taxi_out" in mission "SPP_study"--></distance>
+          <duration units="s" is_input="True">540.0<!--Input defined by the mission.--></duration>
+          <fuel units="kg" is_input="False">279.5481830622084<!--burned fuel during phase "taxi_out" in mission "SPP_study"--></fuel>
+          <thrust_rate is_input="True">0.25<!--Input defined by the mission.--></thrust_rate>
+          <true_airspeed units="m/s" is_input="True">0.0<!--Input defined by the mission.--></true_airspeed>
+        </taxi_out>
+      </SPP_study>
+      <sizing>
+        <main_route>
+          <cruise>
+            <altitude units="m" is_input="True">10668.0</altitude>
+          </cruise>
+        </main_route>
+      </sizing>
+    </mission>
+    <weight>
+      <aircraft>
+        <OWE units="kg" is_input="True">41912.23826286344<!--Zero Fuel Weight for mission "SPP_study"_inp_data:weight:aircraft:OWE--></OWE>
+      </aircraft>
+    </weight>
+    <aerodynamics>
+      <aircraft>
+        <cruise>
+          <AoA units="rad" is_input="False">[-0.015511539698924218, -0.013960385729031797, -0.012409231759139374, -0.010858077789246953, -0.00930692381935453, -0.007755769849462109, -0.006204615879569688, -0.004653461909677265, -0.003102307939784844, -0.001551153969892423, 0.0, 0.001551153969892421, 0.003102307939784842, 0.004653461909677265, 0.006204615879569688, 0.007755769849462107, 0.00930692381935453, 0.010858077789246953, 0.012409231759139373, 0.013960385729031796, 0.015511539698924218, 0.017062693668816638, 0.01861384763870906, 0.020165001608601484, 0.021716155578493903, 0.023267309548386326, 0.02481846351827875, 0.02636961748817117, 0.027920771458063594, 0.02947192542795601, 0.031023079397848433, 0.03257423336774085, 0.034125387337633276, 0.0356765413075257, 0.03722769527741812, 0.038778849247310544, 0.04033000321720297, 0.04188115718709539, 0.04343231115698781, 0.044983465126880236, 0.04653461909677266, 0.04808577306666508, 0.04963692703655749, 0.05118808100644991, 0.052739234976342336, 0.05429038894623476, 0.05584154291612718, 0.057392696886019605, 0.05894385085591203, 0.06049500482580445, 0.062046158795696874, 0.06359731276558929, 0.06514846673548172, 0.06669962070537415, 0.06825077467526657, 0.069801928645159, 0.07135308261505141, 0.07290423658494384, 0.07445539055483624, 0.07600654452472866, 0.07755769849462109, 0.0791088524645135, 0.08066000643440593, 0.08221116040429835, 0.08376231437419078, 0.0853134683440832, 0.08686462231397563, 0.08841577628386804, 0.08996693025376047, 0.0915180842236529, 0.09306923819354532, 0.09462039216343772, 0.09617154613333015, 0.09772270010322257, 0.099273854073115, 0.10082500804300741, 0.10237616201289984, 0.10392731598279226, 0.10547846995268469, 0.1070296239225771, 0.10858077789246953, 0.11013193186236195, 0.11168308583225438, 0.11323423980214681, 0.11478539377203921, 0.11633654774193163, 0.11788770171182406, 0.11943885568171647, 0.1209900096516089, 0.12254116362150132, 0.12409231759139375, 0.12564347156128616, 0.12719462553117858, 0.12874577950107102, 0.13029693347096344, 0.13184808744085585, 0.13339924141074827, 0.1349503953806407, 0.1365015493505331, 0.13805270332042555, 0.13960385729031796, 0.14115501126021038, 0.1427061652301028, 0.14425731919999524, 0.14580847316988765, 0.14735962713978007, 0.14891078110967249, 0.15046193507956493, 0.15201308904945735, 0.15356424301934976, 0.15511539698924218, 0.1566665509591346, 0.158217704929027, 0.15976885889891945, 0.16132001286881187, 0.16287116683870428, 0.16442232080859667, 0.1659734747784891, 0.16752462874838153, 0.16907578271827395, 0.17062693668816636, 0.17217809065805878, 0.17372924462795122, 0.17528039859784364, 0.17683155256773606, 0.1783827065376285, 0.17993386050752092, 0.18148501447741333, 0.18303616844730575, 0.1845873224171982, 0.1861384763870906, 0.18768963035698302, 0.18924078432687544, 0.19079193829676788, 0.1923430922666603, 0.19389424623655271, 0.19544540020644513, 0.19699655417633757, 0.19854770814623, 0.2000988621161224, 0.20165001608601482, 0.2032011700559072, 0.20475232402579965, 0.20630347799569207, 0.20785463196558449, 0.2094057859354769, 0.21095693990536935, 0.21250809387526176, 0.21405924784515418, 0.2156104018150466]</AoA>
+          <CD is_input="False">[0.020927597740523884, 0.020928394122091732, 0.020935490081534672, 0.02094898325342156, 0.020968971272321266, 0.020995551772802653, 0.021028822389434588, 0.021068880756785938, 0.021115824509425552, 0.021169751281922312, 0.021230758708845075, 0.021298944424762697, 0.021374406064244057, 0.02145724126185801, 0.02154754765217342, 0.021645422869759158, 0.021750964549184078, 0.021864270325017057, 0.021985437831826944, 0.022114564704182618, 0.02225174857665294, 0.022397087083806756, 0.022550677860212955, 0.022712618540440387, 0.022883006759057925, 0.023061940150634425, 0.023249516349738753, 0.023445832990939778, 0.023650987708806356, 0.023865078137907357, 0.024088201912811646, 0.02432045666808809, 0.02456194003830554, 0.02481274965803287, 0.025072983161838945, 0.025342738184292623, 0.025623182018432437, 0.025915495251734928, 0.026219815677850415, 0.02653630879039421, 0.026865169202180947, 0.027206622689983848, 0.02756092892525552, 0.02792838497237124, 0.028309329660214988, 0.02870414896130783, 0.0291132825463555, 0.029537231722503603, 0.029976569012500426, 0.030431949691566648, 0.030904125671791093, 0.03139396221373294, 0.031902458055924766, 0.032430769690576934, 0.03298024068487725, 0.033552437160617996, 0.03414919081162001, 0.03477265117280906, 0.03542534927507061, 0.036110275349577725, 0.03683097391427296, 0.037591660422442136, 0.0383973647290818, 0.03925410800015557, 0.04016912143748349, 0.0411511174281665, 0.042210626596112896, 0.04336041792297069, 0.044616023864121425, 0.04599639853818805, 0.04752474504572782, 0.049229558343342944, 0.05114594361809507, 0.053317287777798296, 0.055797384834499454, 0.05865314640195912, 0.06196806865456559, 0.06584668013385608, 0.07042026509359844, 0.07585425053219458, 0.08235776965413005, 0.09019608108366312, 0.09970674652293479, 0.11132076993981128, 0.1255903065392816, 0.14322509788206428, 0.1651405332062128, 0.19252124909944449, 0.22690556118348593, 0.270297912970516, 0.3253191246966109, 0.3954078032912822, 0.4850912191567463, 0.5601038078247013, 0.5611081456342535, 0.562127863036585, 0.5631630576662648, 0.5642138271578618, 0.565280269145945, 0.566362481265083, 0.5674605611498448, 0.5685746064347992, 0.569704714754515, 0.5708509837435615, 0.5720135110365069, 0.5731923942679207, 0.5743877310723712, 0.5755996190844276, 0.5768281559386588, 0.5780734392696334, 0.5793355667119207, 0.580614635900089, 0.5819107444687075, 0.583223990052345, 0.5845544702855704, 0.5859022828029525, 0.5872675252390603, 0.5886502952284627, 0.5900506904057281, 0.5914688084054259, 0.5929047468621248, 0.5943586034103935, 0.595830475684801, 0.5973204613199162, 0.5988286579503079, 0.600355163210545, 0.6019000747351964, 0.6034634901588309, 0.6050455071160172, 0.6066462232413246, 0.6082657361693216, 0.6099041435345771, 0.6115615429716601, 0.6132380321151393, 0.6149337085995837, 0.6166486700595623, 0.6183830141296436, 0.6201368384443966, 0.6219102406383904, 0.6237033183461936, 0.6255161692023751, 0.6273488908415038, 0.6292015808981486, 0.6310743370068784, 0.632967256802262, 0.6348804379188683, 0.636813977991266, 0.6387679746540241, 0.6407425255417116, 0.6427377282888971]<!--Input defined by the mission.--><compressibility is_input="False">[0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005170950144922817, 0.0005181646729619415, 0.0005213869428089445, 0.0005268019831147461, 0.0005344776529257875, 0.0005445109304878488, 0.0005570299580052716, 0.0005721967723618236, 0.0005902108033638946, 0.0006113132453266103, 0.0006357924362021771, 0.0006639904121274494, 0.0006963108456791855, 0.0007332286250367926, 0.0007753013908521007, 0.0008231834206450602, 0.0008776423404059843, 0.0009395792540985986, 0.0010100530193643778, 0.0010903095688222972, 0.0011818173896957428, 0.0012863105412367058, 0.001405840923802082, 0.0015428419337084793, 0.001700206167560105, 0.0018813805087306147, 0.002090482775937006, 0.002332445189606947, 0.0026131912811351863, 0.002939854617772906, 0.0033210499520521957, 0.0037672102733124608, 0.004291006928632867, 0.004907874738826083, 0.0056366701879462106, 0.006500498741981616, 0.007527757722965682, 0.008753454683391155, 0.010220878896503284, 0.011983726739780038, 0.014108812192413122, 0.016679533794221973, 0.019800322452174935, 0.023602364785471015, 0.02825099015794323, 0.03395523413950829, 0.04098025771985558, 0.04966352496655726, 0.06043594221291066, 0.07384956702933596, 0.09061404334198278, 0.11164466275433577, 0.13812596421954337, 0.17159616572476336, 0.21405961314760563, 0.2681370290895777, 0.3372669228456221, 0.4259764671833864, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]<!--increment of drag coefficient due to compressibility effects (shock waves) w.r.t. data:aerodynamics:aircraft:cruise:CL--></compressibility><trim is_input="False">[0.0, 5.89e-06, 1.178e-05, 1.767e-05, 2.356e-05, 2.945e-05, 3.534e-05, 4.123e-05, 4.712e-05, 5.3009999999999996e-05, 5.89e-05, 6.479e-05, 7.068e-05, 7.657000000000001e-05, 8.246e-05, 8.834999999999999e-05, 9.424e-05, 0.00010013, 0.00010601999999999999, 0.00011191, 0.0001178, 0.00012369, 0.00012958, 0.00013547, 0.00014136, 0.00014725, 0.00015314000000000001, 0.00015903, 0.00016492, 0.00017081, 0.00017669999999999999, 0.00018259, 0.00018848, 0.00019437, 0.00020026, 0.00020615000000000002, 0.00021203999999999998, 0.00021793, 0.00022382, 0.00022971000000000002, 0.0002356, 0.00024149000000000002, 0.00024738, 0.00025327, 0.00025916, 0.00026505, 0.00027094, 0.00027683000000000004, 0.00028272, 0.00028861, 0.0002945, 0.00030039, 0.00030628000000000003, 0.00031217, 0.00031806, 0.00032395000000000004, 0.00032984, 0.00033573, 0.00034162, 0.00034751, 0.00035339999999999997, 0.00035929, 0.00036518, 0.00037107, 0.00037696, 0.00038285, 0.00038874, 0.00039463000000000004, 0.00040052, 0.00040641000000000006, 0.00041230000000000005, 0.00041819, 0.00042407999999999996, 0.00042997, 0.00043586, 0.00044175, 0.00044764, 0.00045353, 0.00045942000000000004, 0.00046531000000000003, 0.0004712, 0.00047709000000000006, 0.00048298000000000004, 0.0004888700000000001, 0.00049476, 0.0005006499999999999, 0.00050654, 0.00051243, 0.00051832, 0.00052421, 0.0005301, 0.00053599, 0.00054188, 0.00054777, 0.0005536600000000001, 0.00055955, 0.00056544, 0.00057133, 0.00057722, 0.00058311, 0.000589, 0.00059489, 0.00060078, 0.00060667, 0.0006125600000000001, 0.00061845, 0.00062434, 0.0006302300000000001, 0.00063612, 0.00064201, 0.0006479000000000001, 0.00065379, 0.00065968, 0.0006655700000000001, 0.00067146, 0.0006773500000000001, 0.00068324, 0.0006891299999999999, 0.00069502, 0.00070091, 0.0007067999999999999, 0.00071269, 0.00071858, 0.00072447, 0.00073036, 0.00073625, 0.00074214, 0.00074803, 0.00075392, 0.00075981, 0.0007657, 0.0007715900000000001, 0.00077748, 0.00078337, 0.0007892600000000001, 0.0007951500000000001, 0.00080104, 0.0008069300000000001, 0.0008128200000000001, 0.00081871, 0.0008246000000000001, 0.0008304899999999999, 0.00083638, 0.00084227, 0.0008481599999999999, 0.00085405, 0.00085994, 0.0008658299999999999, 0.00087172, 0.00087761]<!--increment of drag coefficient due to aircraft trim w.r.t. data:aerodynamics:aircraft:cruise:CL--></trim></CD>
+          <CD0 is_input="False">[0.020410502726031603, 0.020401538779539242, 0.020391133754801557, 0.020379385286387403, 0.020366391008865652, 0.020352248556805164, 0.020337055564774806, 0.020320909667343446, 0.020303908499079936, 0.020286149694553154, 0.020267730888331958, 0.020248749714985206, 0.02022930380908177, 0.020209490805190515, 0.020189408337880303, 0.020169154041719997, 0.02014882555127846, 0.02012852050112456, 0.020108336525827157, 0.02008837125995512, 0.020068722338077313, 0.020049487394762592, 0.020030764064579827, 0.020012649982097886, 0.01999524278188563, 0.01997864009851192, 0.019962939566545622, 0.019948238820555603, 0.019934635495110722, 0.019922227224779848, 0.019911111644131844, 0.019901386387735576, 0.0198931490901599, 0.01988649738597369, 0.019881528909745802, 0.019878341296045106, 0.019877032179440465, 0.019877699194500744, 0.019880439975794802, 0.01988535215789151, 0.019892533375359726, 0.019902081262768326, 0.019914093454686158, 0.019928667585682094, 0.019945901290325, 0.019965892203183733, 0.019988737958827166, 0.020014536191824157, 0.020043384536743578, 0.020075380628154282, 0.020110622100625142, 0.020149206588725016, 0.020191231727022772, 0.020236795150087278, 0.02028599449248739, 0.020338927388791974, 0.020395691473569896, 0.020456384381390025, 0.020521103746821215, 0.020589947204432336, 0.020663012388792257, 0.02074039693446983, 0.020822198476033928, 0.020908514648053416, 0.02099944308509715, 0.021095081421734, 0.021195527292532837, 0.02130087833206251, 0.021411232174891895, 0.02152668645558985, 0.021647338808725245, 0.021773286868866933, 0.02190462827058379, 0.02204146064844468, 0.022183881637018454, 0.02233198887087399, 0.02248587998458015, 0.022645652612705798, 0.022811404389819788, 0.022983232950490994, 0.023161235929288284, 0.02334551096078051, 0.02353615567953654, 0.023733267720125246, 0.023936944717115483, 0.024147284305076126, 0.02436438411857602, 0.02458834179218405, 0.024819254960469075, 0.025057221257999945, 0.025302338319345544, 0.025554703779074723, 0.02581441527175635, 0.02608157043195929, 0.0263562668942524, 0.026638602293204562, 0.026928674263384626, 0.027226580439361447, 0.02753241845570392, 0.02784628594698088, 0.0281682805477612, 0.028498499892613754, 0.02883704161610739, 0.02918400335281099, 0.02953948273729339, 0.029903577404123485, 0.030276384987870126, 0.030658003123102184, 0.031048529444388507, 0.031448061586297975, 0.031856697183399445, 0.03227453387026178, 0.03270166928145384, 0.033138201051544504, 0.03358422681510263, 0.03403984420669708, 0.034505150860896706, 0.0349802444122704, 0.035465222495386986, 0.035960182744815376, 0.03646522279512441, 0.03698044028088295, 0.037505932836659865, 0.03804179809702401, 0.03858813369654426, 0.03914503726978949, 0.03971260645132852, 0.04029093887573028, 0.040880132177563575, 0.0414802839913973, 0.04209149195180031, 0.04271385369334148, 0.043347466850589655, 0.0439924290581137, 0.0446488379504825, 0.04531679116226491, 0.04599638632802979, 0.04668772108234601, 0.047390893059782425, 0.0481059998949079, 0.048833139222291315, 0.0495724086765015, 0.05032390589210736, 0.05108772850367774, 0.0518639741457815, 0.05265274045298751, 0.053454125059864646, 0.05426822560098175, 0.055095139710907695, 0.05593496502421134]<!--profile drag coefficient for whole aircraft in cruise conditions w.r.t. data:aerodynamics:aircraft:cruise:CL--><clean is_input="False">[0.01841622539681888, 0.01840813730309262, 0.018398748936554035, 0.018388148392055614, 0.01837642376444984, 0.01836366314858919, 0.018349954639326146, 0.018335386331513197, 0.018320046320002815, 0.01830402269964749, 0.018287403565299697, 0.018270277011811917, 0.018252731134036637, 0.018234854026826335, 0.018216733785033495, 0.018198458503510595, 0.01818011627711012, 0.018161795200684547, 0.018143583369086363, 0.018125568877168048, 0.018107839819782083, 0.018090484291780947, 0.018073590388017122, 0.018057246203343095, 0.018041539832611343, 0.018026559370674346, 0.01801239291238459, 0.017999128552594557, 0.01798685438615672, 0.01797565850792357, 0.017965629012747585, 0.017956853995481248, 0.017949421550977035, 0.017943419774087435, 0.017938936759664924, 0.017936060602561987, 0.017934879397631102, 0.017935481239724757, 0.017937954223695426, 0.017942386444395598, 0.017948865996677745, 0.01795748097539436, 0.017968319475397915, 0.017981469591540896, 0.01799701941867578, 0.018015057051655056, 0.0180356705853312, 0.018058948114556696, 0.018084977734184028, 0.01811384753906567, 0.01814564562405411, 0.018180460084001825, 0.0182183790137613, 0.018259490508185018, 0.018303882662125456, 0.0183516435704351, 0.018402861327966424, 0.01845762402957192, 0.018516019770104062, 0.018578136644415332, 0.018644062747358216, 0.01871388617378519, 0.018787695018548742, 0.01886557737650135, 0.01894762134249549, 0.019033915011383653, 0.01912454647801832, 0.019219603837251964, 0.01931917518393707, 0.019423348612926127, 0.019532212219071608, 0.019645854097225995, 0.019764362342241774, 0.019887825048971425, 0.020016330312267426, 0.020149966226982265, 0.02028882088796842, 0.020432982390078375, 0.0205825388281646, 0.020737578297079593, 0.02089818889167583, 0.021064458706805785, 0.021236475837321946, 0.021414328378076795, 0.02159810442392281, 0.021787892069712482, 0.021983779410298273, 0.022185854540532686, 0.022394205555268196, 0.022608920549357276, 0.022830087617652418, 0.023057794855006097, 0.023292130356270795, 0.023533182216298996, 0.023781038529943177, 0.02403578739205583, 0.02429751689748943, 0.02456631514109645, 0.02484227021772939, 0.02512547022224072, 0.025416003249482916, 0.025713957394308474, 0.026019420751569863, 0.026332481416119578, 0.026653227482810075, 0.026981747046493865, 0.027318128202023416, 0.027662459044251218, 0.028014827668029735, 0.028375322168211467, 0.028744030639648883, 0.029121041177194468, 0.029506441875700697, 0.029900320830020064, 0.030302766135005054, 0.03071386588550814, 0.031133708176381787, 0.031562381102478505, 0.03199997275865075, 0.03244657123975103, 0.03290226464063182, 0.03336714105614559, 0.03384128858114483, 0.034324795310482006, 0.03481774933900962, 0.03532023876158016, 0.03583235167304606, 0.036354176168259866, 0.03688580034207401, 0.037427312289341, 0.03797880010491331, 0.03854035188364342, 0.039112055720383815, 0.03969399970998696, 0.040286271947305365, 0.040888960527191494, 0.04150215354449783, 0.04212593909407686, 0.04276040527078105, 0.0434056401694629, 0.04406173188497489, 0.044728768512169476, 0.04540683814589918, 0.04609602888101646, 0.046796428812373794, 0.047508126034823676, 0.04823120864321859, 0.048965764732410995, 0.049711882397253396, 0.05046964973259825]<!--like data:aerodynamics:aircraft:cruise:CD0 but without parasitic drag--></clean><parasitic is_input="False">[0.001994277329212722, 0.001993401476446624, 0.0019923848182475216, 0.0019912368943317896, 0.0019899672444158127, 0.001988585408215976, 0.0019871009254486607, 0.0019855233358302485, 0.0019838621790771206, 0.0019821269949056655, 0.001980327323032261, 0.001978472703173289, 0.0019765726750451337, 0.0019746367783641805, 0.001972674552846807, 0.001970695538209402, 0.00196870927416834, 0.001966725300440012, 0.0019647531567407936, 0.0019628023827870725, 0.0019608825182952302, 0.001959003102981645, 0.0019571736765627047, 0.001955403778754791, 0.0019537029492742858, 0.0019520807278375733, 0.0019505466541610318, 0.0019491102679610461, 0.0019477811089540012, 0.0019465687168562784, 0.0019454826313842592, 0.0019445323922543285, 0.0019437275391828643, 0.0019430776118862549, 0.0019425921500808782, 0.0019422806934831192, 0.0019421527818093628, 0.001942217954775987, 0.0019424857520993766, 0.001942965713495913, 0.0019436673786819812, 0.001944600287373966, 0.0019457739792882421, 0.0019471979941411977, 0.0019488818716492176, 0.0019508351515286765, 0.001953067373495966, 0.001955588077267461, 0.0019584068025595494, 0.001961533089088613, 0.001964976476571033, 0.0019687465047231907, 0.0019728527132614714, 0.0019773046419022597, 0.0019821118303619337, 0.0019872838183568747, 0.0019928301456034712, 0.0019987603518181046, 0.002005083976717153, 0.0020118105600170043, 0.0020189496414340403, 0.002026510760684639, 0.002034503457485185, 0.002042937271552067, 0.0020518217426016595, 0.002061166410350347, 0.0020709808145145184, 0.0020812744948105477, 0.0020920569909548235, 0.002103337842663724, 0.002115126589653637, 0.002127432771640937, 0.0021402659283420167, 0.0021536355994732533, 0.0021675513247510284, 0.002182022643891727, 0.0021970590966117302, 0.0022126702226274234, 0.0022288655616551876, 0.002245654653411401, 0.0022630470376124555, 0.0022810522539747254, 0.0022996798422145956, 0.002318939342048451, 0.0023388402931926733, 0.0023593922353636436, 0.002380604708277747, 0.0024024872516513647, 0.0024250494052008784, 0.0024483007086426693, 0.002472250701693126, 0.0024969089240686262, 0.002522284915485555, 0.002548388215660294, 0.002575228364309224, 0.0026028149011487305, 0.0026311573658951946, 0.002660265298264998, 0.002690148237974529, 0.0027208157247401617, 0.002752277298278285, 0.00278454249830528, 0.0028176208645375282, 0.002851521936691411, 0.0028862552544833137, 0.0029218303576296206, 0.00295825678584671, 0.0029955440788509667, 0.003033701776358772, 0.003072739418086508, 0.003112666543750562, 0.0031534926930673127, 0.0031952274057531448, 0.0032378802215244397, 0.003281460680097579, 0.0033259783211889438, 0.0033714426845149192, 0.0034178633097918937, 0.003465249736736238, 0.0035136115050643443, 0.0035629581544925903, 0.003613299224737361, 0.0036646442555150344, 0.003717002786542002, 0.0037703843575346424, 0.003824798508209333, 0.003880254778282459, 0.003936762707470412, 0.003994331835489563, 0.0040529717020562975, 0.004112691846887, 0.004173501809698055, 0.004235411130205841, 0.004298429348126742, 0.004362566003177137, 0.004427830635073418, 0.004494232783531962, 0.004561781988269155, 0.004630487789001374, 0.004700359725445004, 0.004771407337316423, 0.0048436401643320234, 0.004917067746208183, 0.004991699622661279, 0.005067545333407704, 0.005144614418163836, 0.005222916416646059, 0.005302460868570752, 0.005383257313654299, 0.005465315291613086]<!--estimated parasitic drag for whole aircraft in cruise conditions (no high-lift) w.r.t. data:aerodynamics:aircraft:low_speed:CL--></parasitic></CD0>
+          <CL is_input="False">[0.0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3, 0.31, 0.32, 0.33, 0.34, 0.35000000000000003, 0.36, 0.37, 0.38, 0.39, 0.4, 0.41000000000000003, 0.42, 0.43, 0.44, 0.45, 0.46, 0.47000000000000003, 0.48, 0.49, 0.5, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.5700000000000001, 0.58, 0.59, 0.6, 0.61, 0.62, 0.63, 0.64, 0.65, 0.66, 0.67, 0.68, 0.6900000000000001, 0.7000000000000001, 0.71, 0.72, 0.73, 0.74, 0.75, 0.76, 0.77, 0.78, 0.79, 0.8, 0.81, 0.8200000000000001, 0.8300000000000001, 0.84, 0.85, 0.86, 0.87, 0.88, 0.89, 0.9, 0.91, 0.92, 0.93, 0.9400000000000001, 0.9500000000000001, 0.96, 0.97, 0.98, 0.99, 1.0, 1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1, 1.11, 1.12, 1.1300000000000001, 1.1400000000000001, 1.1500000000000001, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21, 1.22, 1.23, 1.24, 1.25, 1.26, 1.27, 1.28, 1.29, 1.3, 1.31, 1.32, 1.33, 1.34, 1.35, 1.36, 1.37, 1.3800000000000001, 1.3900000000000001, 1.4000000000000001, 1.41, 1.42, 1.43, 1.44, 1.45, 1.46, 1.47, 1.48, 1.49]<!--Input defined by the mission.--></CL>
+          <CL0 is_input="True">0.1</CL0>
+          <CL_alpha units="1/rad" is_input="False">6.446813271988426<!--derivative of lift coefficient with respect to angle of attack in cruise conditions--></CL_alpha>
+          <L_D_max is_input="False">16.398631612947263<!--max lift/drag ratio in cruise conditions--></L_D_max>
+          <induced_drag_coefficient is_input="False">0.043003645113426185<!--multiply squared lift coefficient by this coefficient to get induced drag coefficient--></induced_drag_coefficient>
+          <optimal_CD is_input="False">0.03414919081162001<!--drag coefficient at maximum lift/drag ratio in cruise conditions--></optimal_CD>
+          <optimal_CL is_input="False">0.56<!--lift coefficient at maximum lift/drag ratio in cruise conditions--></optimal_CL>
+          <oswald_coefficient is_input="False">0.7748630874323672<!--Oswald coefficient for cruise conditions--></oswald_coefficient>
+        </cruise>
+        <takeoff>
+          <CD is_input="True">[0.04600814270944508, 0.04637981859694686, 0.046757055723439286, 0.047139961193487116, 0.04752864211165514, 0.047923205582508115, 0.04832375871061082, 0.04873040860052803, 0.04914326235682451, 0.04956242708406504, 0.049988009886814386, 0.050420117869637314, 0.0508588581370986, 0.05130433779376303, 0.051756663944195355, 0.05221594369296037, 0.052682284144622823, 0.0531557924037475, 0.05363657557489915, 0.05412474076264258, 0.05462039507154254, 0.05512364560616381, 0.05563459947107116, 0.056153363770829356, 0.056680045610003185, 0.05721475209315739, 0.05775759032485678, 0.058308667409666094, 0.05886809045215012, 0.05943596655687363, 0.060012402828401396, 0.06059750637129818, 0.06119138429012877, 0.06179414368945792, 0.06240589167385041, 0.06302673534787101, 0.0636567818160845, 0.06429613818305564, 0.06494491155334921, 0.06560320903153, 0.06627113772216273, 0.06694880472981223, 0.06763631715904321, 0.06833378211442051, 0.06904130670050886, 0.06975899802187303, 0.0704869631830778, 0.07122530928868796, 0.07197414344326827, 0.0727335727513835, 0.0735037043175984, 0.07428464524647777, 0.07507650264258636, 0.07587938361048897, 0.07669339525475034, 0.07751864467993529, 0.07835523899060853, 0.07920328529133489, 0.0800628906866791, 0.08093416228120592, 0.0818172071794802, 0.0827121324860666, 0.08361904530553001, 0.08453805274243509, 0.08546926190134671, 0.08641277988682956, 0.08736871380344849, 0.08833717075576819, 0.08931825784835351, 0.09031208218576914, 0.09131875087257994, 0.0923383710133506, 0.09337104971264594, 0.09441689407503073, 0.09547601120506972, 0.09654850820732772, 0.09763449218636946, 0.09873407024675973, 0.0998473494930633, 0.10097443702984493, 0.10211543996166944, 0.10327046539310153, 0.10443962042870603, 0.10562301217304768, 0.10682074773069122, 0.10803293420620153, 0.10925967870414327, 0.1105010883290813, 0.1117572701855803, 0.11302833137820514, 0.11431437901152049, 0.11561552019009123, 0.11693186201848202, 0.11826351160125775, 0.11961057604298306, 0.12097316244822284, 0.1223513779215418, 0.12374532956750472, 0.12515512449067637, 0.12658086979562153, 0.128022672586905, 0.1294806399690915, 0.13095487904674583, 0.13244549692443272, 0.13395260070671702, 0.13547629749816342, 0.1370166944033368, 0.1385738985268018, 0.1401480169731233, 0.141739156846866, 0.1433474252525947, 0.14497292929487415, 0.1466157760782692, 0.14827607270734453, 0.14995392628666493, 0.15164944392079518, 0.15336273271430007, 0.15509389977174437, 0.15684305219769282, 0.15861029709671026, 0.1603957415733614, 0.16219949273221101, 0.1640216576778239, 0.1658623435147648, 0.16772165734759856, 0.16959970628088986, 0.1714965974192035, 0.17341243786710425, 0.17534733472915692, 0.17730139510992626, 0.179274726113977, 0.18126743484587396, 0.18327962841018186, 0.18531141391146555, 0.18736289845428977, 0.1894341891432193, 0.19152539308281885, 0.1936366173776533, 0.1957679691322873, 0.1979195554512857, 0.20009148343921324, 0.20228386020063469, 0.20449679284011482, 0.20673038846221847, 0.20898475417151036, 0.21125999707255527, 0.21355622426991794, 0.21587354286816315, 0.21821205997185572, 0.22057188268556044]<!--Input defined by the mission.--></CD>
+          <CL is_input="True">[0.51636274189703, 0.52636274189703, 0.53636274189703, 0.54636274189703, 0.55636274189703, 0.5663627418970301, 0.5763627418970301, 0.5863627418970301, 0.59636274189703, 0.60636274189703, 0.61636274189703, 0.62636274189703, 0.63636274189703, 0.64636274189703, 0.65636274189703, 0.66636274189703, 0.67636274189703, 0.6863627418970301, 0.69636274189703, 0.70636274189703, 0.71636274189703, 0.72636274189703, 0.73636274189703, 0.74636274189703, 0.75636274189703, 0.76636274189703, 0.77636274189703, 0.78636274189703, 0.79636274189703, 0.80636274189703, 0.8163627418970301, 0.8263627418970301, 0.8363627418970301, 0.8463627418970301, 0.8563627418970301, 0.8663627418970301, 0.87636274189703, 0.88636274189703, 0.89636274189703, 0.90636274189703, 0.91636274189703, 0.92636274189703, 0.93636274189703, 0.94636274189703, 0.95636274189703, 0.96636274189703, 0.97636274189703, 0.98636274189703, 0.99636274189703, 1.00636274189703, 1.01636274189703, 1.02636274189703, 1.03636274189703, 1.04636274189703, 1.05636274189703, 1.06636274189703, 1.07636274189703, 1.08636274189703, 1.09636274189703, 1.1063627418970299, 1.11636274189703, 1.12636274189703, 1.1363627418970301, 1.14636274189703, 1.1563627418970301, 1.16636274189703, 1.1763627418970302, 1.18636274189703, 1.1963627418970302, 1.20636274189703, 1.2163627418970302, 1.22636274189703, 1.23636274189703, 1.24636274189703, 1.25636274189703, 1.26636274189703, 1.27636274189703, 1.28636274189703, 1.29636274189703, 1.30636274189703, 1.31636274189703, 1.32636274189703, 1.33636274189703, 1.34636274189703, 1.3563627418970299, 1.36636274189703, 1.37636274189703, 1.3863627418970301, 1.39636274189703, 1.4063627418970301, 1.41636274189703, 1.4263627418970302, 1.43636274189703, 1.4463627418970302, 1.45636274189703, 1.4663627418970302, 1.47636274189703, 1.48636274189703, 1.49636274189703, 1.50636274189703, 1.51636274189703, 1.52636274189703, 1.53636274189703, 1.54636274189703, 1.55636274189703, 1.56636274189703, 1.57636274189703, 1.58636274189703, 1.59636274189703, 1.60636274189703, 1.61636274189703, 1.6263627418970301, 1.6363627418970301, 1.6463627418970301, 1.6563627418970301, 1.6663627418970302, 1.67636274189703, 1.68636274189703, 1.69636274189703, 1.70636274189703, 1.71636274189703, 1.72636274189703, 1.73636274189703, 1.74636274189703, 1.75636274189703, 1.76636274189703, 1.77636274189703, 1.78636274189703, 1.79636274189703, 1.80636274189703, 1.81636274189703, 1.82636274189703, 1.83636274189703, 1.84636274189703, 1.85636274189703, 1.86636274189703, 1.8763627418970301, 1.8863627418970301, 1.8963627418970301, 1.9063627418970301, 1.9163627418970302, 1.92636274189703, 1.93636274189703, 1.94636274189703, 1.95636274189703, 1.96636274189703, 1.97636274189703, 1.98636274189703, 1.99636274189703, 2.0063627418970302]<!--Input defined by the mission.--></CL>
+        </takeoff>
+      </aircraft>
+      <fuselage>
+        <cruise>
+          <CD0 is_input="False">[0.007656612877416307, 0.00763586243360081, 0.007615295146951848, 0.007594911017469419, 0.007574710045153527, 0.007554692230004168, 0.007534857572021343, 0.007515206071205054, 0.0074957377275553, 0.007476452541072079, 0.007457350511755393, 0.007438431639605242, 0.0074196959246216245, 0.007401143366804543, 0.007382773966153996, 0.007364587722669983, 0.007346584636352505, 0.007328764707201561, 0.007311127935217153, 0.007293674320399278, 0.007276403862747938, 0.007259316562263133, 0.007242412418944862, 0.007225691432793126, 0.007209153603807925, 0.007192798931989258, 0.0071766274173371255, 0.007160639059851528, 0.007144833859532465, 0.007129211816379937, 0.007113772930393942, 0.007098517201574483, 0.007083444629921559, 0.007068555215435169, 0.007053848958115313, 0.007039325857961992, 0.007024985914975206, 0.007010829129154955, 0.006996855500501237, 0.006983065029014055, 0.006969457714693407, 0.006956033557539294, 0.0069427925575517154, 0.006929734714730671, 0.006916860029076161, 0.006904168500588187, 0.006891660129266747, 0.0068793349151118404, 0.006867192858123469, 0.006855233958301633, 0.006843458215646331, 0.006831865630157564, 0.0068204562018353305, 0.006809229930679633, 0.006798186816690469, 0.00678732685986784, 0.006776650060211746, 0.0067661564177221864, 0.006755845932399161, 0.006745718604242671, 0.006735774433252715, 0.006726013419429293, 0.006716435562772407, 0.006707040863282054, 0.006697829320958237, 0.006688800935800954, 0.006679955707810206, 0.006671293636985992, 0.006662814723328313, 0.006654518966837168, 0.006646406367512558, 0.006638476925354483, 0.006630730640362942, 0.006623167512537936, 0.006615787541879464, 0.0066085907283875275, 0.0066015770720621245, 0.006594746572903257, 0.006588099230910924, 0.006581635046085125, 0.006575354018425861, 0.006569256147933132, 0.006563341434606937, 0.0065576098784472766, 0.006552061479454151, 0.00654669623762756, 0.006541514152967503, 0.006536515225473982, 0.006531699455146995, 0.006527066841986542, 0.006522617385992624, 0.006518351087165241, 0.006514267945504392, 0.0065103679610100775, 0.0065066511336822975, 0.006503117463521052, 0.006499766950526342, 0.006496599594698166, 0.006493615396036525, 0.006490814354541418, 0.006488196470212846, 0.006485761743050809, 0.006483510173055306, 0.006481441760226338, 0.006479556504563904, 0.006477854406068005, 0.0064763354647386405, 0.00647499968057581, 0.0064738470535795145, 0.006472877583749754, 0.006472091271086528, 0.006471488115589836, 0.006471068117259679, 0.006470831276096057, 0.006470777592098969, 0.006470907065268416, 0.006471219695604398, 0.006471715483106914, 0.006472394427775965, 0.00647325652961155, 0.00647430178861367, 0.006475530204782324, 0.006476941778117513, 0.006478536508619237, 0.006480314396287495, 0.006482275441122288, 0.006484419643123615, 0.006486747002291477, 0.006489257518625874, 0.006491951192126805, 0.006494828022794271, 0.006497888010628271, 0.006501131155628806, 0.006504557457795876, 0.00650816691712948, 0.006511959533629619, 0.006515935307296292, 0.0065200942381295, 0.006524436326129243, 0.00652896157129552, 0.006533669973628332, 0.006538561533127678, 0.006543636249793559, 0.006548894123625975, 0.006554335154624925, 0.0065599593427904095, 0.006565766688122429, 0.006571757190620983, 0.006577930850286072, 0.006584287667117695]<!--profile drag coefficient for fuselage w.r.t. data:aerodynamics:aircraft:cruise:CL--></CD0>
+        </cruise>
+      </fuselage>
+      <horizontal_tail>
+        <cruise>
+          <CD0 is_input="False">0.0017777154842473178<!--profile drag coefficient for horizontal tail in cruise conditions--></CD0>
+        </cruise>
+      </horizontal_tail>
+      <nacelles>
+        <cruise>
+          <CD0 is_input="False">0.0016323074210511132<!--profile drag coefficient for nacelles in cruise conditions--></CD0>
+        </cruise>
+      </nacelles>
+      <pylons>
+        <cruise>
+          <CD0 is_input="False">0.00035160953396002015<!--profile drag coefficient for pylons in cruise conditions--></CD0>
+        </cruise>
+      </pylons>
+      <vertical_tail>
+        <cruise>
+          <CD0 is_input="False">0.0013137372099399848<!--profile drag coefficient for vertical tail in cruise conditions--></CD0>
+        </cruise>
+      </vertical_tail>
+      <wing>
+        <cruise>
+          <CD0 is_input="False">[0.005684242870204137, 0.005696905220293369, 0.005708084140403748, 0.005717867725387756, 0.005726344070097873, 0.005733601269386583, 0.0057397274181063655, 0.005744810611109704, 0.005748938943249078, 0.005752200509376972, 0.005754683404345864, 0.005756475723008238, 0.005757665560216573, 0.0057583410108233545, 0.005758590169681061, 0.005758501131642174, 0.005758161991559176, 0.005757660844284549, 0.005757085784670774, 0.005756524907570331, 0.0057560663078357055, 0.005755798080319376, 0.005755808319873823, 0.005756185121351531, 0.00575701657960498, 0.005758390789486652, 0.005760395845849027, 0.005763119843544589, 0.005766650877425818, 0.0057710770423451945, 0.0057764864331552035, 0.005782967144708325, 0.005790607271857038, 0.005799494909453827, 0.005809718152351173, 0.005821365095401556, 0.00583452383345746, 0.005849282461371365, 0.0058657290739957514, 0.005883951766183104, 0.005904038632785901, 0.005926077768656627, 0.0059501572686477605, 0.005976365227611785, 0.006004789740401181, 0.0060355189018684325, 0.006068640806866016, 0.006104243550246418, 0.006142415226862119, 0.0061832439315655996, 0.006226817759209341, 0.006273224804645825, 0.006322553162727532, 0.006374890928306946, 0.006430326196236549, 0.006488947061368821, 0.006550841618556241, 0.006616097962651295, 0.006684804188506462, 0.0067570483909742225, 0.006832918664907064, 0.0069125031051574595, 0.006995889806577898, 0.007083166864020856, 0.007174422372338817, 0.007269744426384263, 0.007369221121009674, 0.007472940551067534, 0.007580990811410321, 0.0076934599968905195, 0.007810436202360611, 0.007932007522673076, 0.008058262052680395, 0.008189287887235053, 0.008325173121189525, 0.0084660058493963, 0.008611874166707858, 0.008762866167976679, 0.00891906994805524, 0.009080573601796031, 0.00924746522405153, 0.009419832909674216, 0.009597764753516572, 0.00978134885043108, 0.009970673295270223, 0.010165826182886483, 0.010366895608132334, 0.010573969665860267, 0.010787136450922762, 0.011006484058172297, 0.011232100582461357, 0.011464074118642417, 0.011702492761567965, 0.011947444606090481, 0.012199017747062443, 0.012457300279336342, 0.01272238029776465, 0.012994345897199847, 0.013273285172494426, 0.013559286218500862, 0.013852437130071633, 0.014152826002059228, 0.01446054092931612, 0.014775670006694804, 0.015098301329047735, 0.015428522991227421, 0.01576642308808634, 0.01611208971447697, 0.016465610965251783, 0.016827074935263274, 0.017196569719363917, 0.017574183412406193, 0.017960004109242582, 0.01835411990472557, 0.018756618893707645, 0.019167589171041284, 0.019587118831578952, 0.020015295970173153, 0.02045220868167635, 0.020897945060941052, 0.021352593202819715, 0.021816241202164834, 0.022288977153828885, 0.02277088915266434, 0.023262065293523697, 0.023762593671259442, 0.02427256238072402, 0.02479205951676996, 0.025321173174249707, 0.025859991448015766, 0.026408602432920612, 0.026967094223816723, 0.02753555491555658, 0.028114072602992653, 0.028702735380977458, 0.02930163134436345, 0.02991084858800311, 0.030530475206748932, 0.03116059929545338, 0.03180130894896895, 0.032452692262148135, 0.03311483732984337, 0.03378783224690719, 0.034471765108192054, 0.03516672400855044, 0.03587279704283484, 0.03659007230589773, 0.037318637892591586, 0.038058581897768895, 0.03880999241628213]<!--profile drag coefficient for wing w.r.t. data:aerodynamics:aircraft:cruise:CL--></CD0>
+          <reynolds is_input="False">6124998.624249204<!--Reynolds number based on wing mean aerodynamic chord in cruise conditions--></reynolds>
+        </cruise>
+      </wing>
+    </aerodynamics>
+  </data>
+  <settings>
+    <aerodynamics>
+      <wing>
+        <CD>
+          <fuselage_interaction is_input="True">0.04</fuselage_interaction>
+        </CD>
+      </wing>
+    </aerodynamics>
+    <mission>
+      <SPP_design>
+        <taxi_out>
+          <time_step units="s" is_input="True">60.0<!--Input defined by the mission.--></time_step>
+        </taxi_out>
+      </SPP_design>
+      <SPP_study>
+        <taxi_out>
+          <time_step units="s" is_input="True">60.0<!--Input defined by the mission.--></time_step>
+        </taxi_out>
+      </SPP_study>
+    </mission>
+  </settings>
+  <tuning>
+    <propulsion>
+      <rubber_engine>
+        <SFC>
+          <k_cr is_input="True">1.0<!--correction ratio to apply to the computed SFC at cruise ceiling--></k_cr>
+          <k_sl is_input="True">1.0<!--correction ratio to apply to the computed SFC at sea level--></k_sl>
+        </SFC>
+      </rubber_engine>
+    </propulsion>
+    <aerodynamics>
+      <aircraft>
+        <cruise>
+          <CD>
+            <k is_input="True">1.0<!--correction ratio to apply to computed drag coefficient in cruise conditions--></k>
+            <offset is_input="True">0.0<!--correction offset to apply to computed drag coefficient in cruise conditions--></offset>
+            <compressibility>
+              <characteristic_mach_increment is_input="True">0.018<!--Increment to apply to the computed characteristic Mach (where compressibility drag is 20 d.c.)--></characteristic_mach_increment>
+              <max_value is_input="True">0.5<!--maximum authorized value for compressibility drag. Allows to prevent the model from overestimating the compressibility effect, especially for aircraft models after year 2000.--></max_value>
+            </compressibility>
+            <winglet_effect>
+              <k is_input="True">0.9<!--correction ratio to apply to computed induced drag coefficient in cruise conditions--></k>
+              <offset is_input="True">0.0<!--correction ratio to apply to computed drag coefficient in cruise conditions--></offset>
+            </winglet_effect>
+          </CD>
+          <CL>
+            <k is_input="True">1.0<!--ratio to apply to defined cl range (which goes by default from 0.0 to 1.5) in cruise polar computation--></k>
+            <offset is_input="True">0.0<!--offset to apply to defined cl range (which goes by default from 0.0 to 1.5) in cruise polar computation--></offset>
+            <winglet_effect>
+              <k is_input="True">1.0<!--ratio to apply to defined cl range (which goes by default from 0.0 to 1.5) in cruise polar computation--></k>
+              <offset is_input="True">0.0<!--offset to apply to defined cl range (which goes by default from 0.0 to 1.5) in cruise polar computation--></offset>
+            </winglet_effect>
+          </CL>
+        </cruise>
+      </aircraft>
+    </aerodynamics>
+  </tuning>
+</FASTOAD_model>
