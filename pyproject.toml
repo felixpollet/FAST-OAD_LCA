@@ -46,7 +46,8 @@ classifiers = [
 python = "^3.10, <3.12"
 fast-oad-core = { version = "^1.7.3", python = "<3.12" }
 pyparsing = "^3.0.0"  # needed, but not declared as required, by OpenMDAO for file_wrap utility.
-lca-modeller = {git = "https://github.com/AeroMAPS/lca-modeller.git"}
+lca-modeller = "*"
+#lca-modeller = {git = "https://github.com/AeroMAPS/lca-modeller.git"}
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.0"

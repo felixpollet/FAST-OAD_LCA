@@ -20,10 +20,14 @@ import pandas as pd
 import lca_algebraic as agb
 from lca_algebraic.axis_dict import AxisDict
 from typing import Dict
-from lcav.io.configuration import LCAProblemConfigurator, KEY_YEAR
+from lca_modeller.io.configuration import LCAProblemConfigurator, KEY_YEAR
 import re
+import os
 import sympy as sym
 from .constants import LCA_CHARACTERIZATION_KEY, LCA_NORMALIZATION_KEY, LCA_WEIGHTING_KEY, LCA_FACTOR_KEY, LCA_SINGLE_SCORE_KEY
+
+import logging
+_LOGGER = logging.getLogger(__name__)
 
 
 @oad.RegisterOpenMDAOSystem("fastoad.plugin.lca")
@@ -138,25 +142,33 @@ class LCAcore(om.ExplicitComponent):
         self.options.declare("nonfloat_params", default=None, types=dict)
 
     def setup(self):
-        if not {'model', 'methods', 'lambdas', 'partial_lambdas_dict'}.issubset(LCAcore._cache):
+        # Check if cache is empty or if configuration file has been modified
+        last_mod_time = os.path.getmtime(self.options['configuration_file'])
+        if not LCAcore._cache or last_mod_time > LCAcore._cache.get('last_mod_time', 0):
+            _LOGGER.info("LCA module: No cache found or configuration file has been modified. "
+                         "Compiling LCA model and functions.")
+            LCAcore._cache['last_mod_time'] = last_mod_time
+
             # Load LCA configuration file, build model and get LCIA methods
             _, model, methods = LCAProblemConfigurator(self.options['configuration_file']).generate()
-            # _, self.model, self.methods = LCAProblemConfigurator(self.options['configuration_file']).generate()
 
+            print("Compiling LCIA functions for LCA model")
             # Compile expressions for impacts
-            print("Compiling LCIA functions...")
             lambdas = agb.lca._preMultiLCAAlgebric(model, methods, axis=self.options['axis'])
             # TODO: enable multiple axes to be declared, e.g. to ventilate impacts both by phase and component.
 
             # Compile expressions for partial derivatives of impacts w.r.t. parameters
             partial_lambdas_dict = _preMultiLCAAlgebricPartials(model, methods, axis=self.options['axis'])
-            print("Done.")
+            print("LCIA functions successfully compiled")
 
             # Set cache
             LCAcore._cache['model'] = model
             LCAcore._cache['methods'] = methods
             LCAcore._cache['lambdas'] = lambdas
             LCAcore._cache['partial_lambdas_dict'] = partial_lambdas_dict
+
+        else:
+            _LOGGER.info("Loading cached data for LCA")
 
         # Get cached values
         self.model = LCAcore._cache['model']
@@ -182,7 +194,7 @@ class LCAcore(om.ExplicitComponent):
             elif p.name in self.options['nonfloat_params']:
                 self.parameters[p.name] = self.options['nonfloat_params'][p.name].replace('-', '_')
             else:
-                print("LCA parameter '%s' not provided in configuration file. Default value will be applied: '%s'" % (
+                _LOGGER.warning("LCA parameter '%s' not provided in configuration file. Default value will be applied: '%s'" % (
                 p.name, p.default))
 
         # Declare outputs for each method and axis key
@@ -273,7 +285,7 @@ class LCAcore(om.ExplicitComponent):
             # Check no params are passed for FixedParams
             for key in params:
                 if key in agb.params._fixed_params():
-                    print("Param '%s' is marked as FIXED, but passed in parameters : ignored" % key)
+                    _LOGGER.warning("Param '%s' is marked as FIXED, but passed in parameters : ignored" % key)
 
             #lambdas = _preMultiLCAAlgebric(model, methods, alpha=alpha, axis=axis)  # <-- this is the time-consuming part
 
@@ -431,6 +443,7 @@ def agb_to_fastoad_lcia_name(method_name: str) -> str:
     name = re.sub(r': |/| |, ', '_', name)  # replace other elements by underscores
     name = name.rstrip('_')  # remove trailing underscores
     return name
+
 
 def bw_to_fastoad_lcia_name(method_name: str) -> str:
     """
