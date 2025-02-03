@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "FAST-OAD-LCA"
-version = "0.1.0"
+version = "0.0.0"
 description = "FAST-OAD_LCA is a FAST-OAD plugin enabling Life Cycle Assessment of aircraft designs."
 readme = "README.md"
 authors = [
@@ -47,7 +47,6 @@ python = "^3.10, <3.12"
 fast-oad-core = { version = "^1.7.3", python = "<3.12" }
 pyparsing = "^3.0.0"  # needed, but not declared as required, by OpenMDAO for file_wrap utility.
 lca-modeller = "*"
-#lca-modeller = {git = "https://github.com/AeroMAPS/lca-modeller.git"}
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.0"
