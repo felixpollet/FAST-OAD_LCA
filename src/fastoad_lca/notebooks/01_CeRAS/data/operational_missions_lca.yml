@@ -1,16 +1,31 @@
-title: Sample configuration file for the LCA plugin
+title: Operational missions and life cycle analysis
 
 # List of folder paths where user added custom registered OpenMDAO components
 module_folders:
 
 # Input and output files
-input_file: ../workdir/problem_inputs.xml
-output_file: ../workdir/problem_outputs.xml
+input_file: ../workdir/operational_missions_lca_in.xml
+output_file: ../workdir/operational_missions_lca_out.xml
 
 # Definition of OpenMDAO model
 # Although "model" is a mandatory name for the top level of the model, its
 # subcomponents can be freely named by user
 model:
+
+    aerodynamics_highspeed:
+        id: fastoad.aerodynamics.highspeed.legacy
+        
+    SPP_study:
+        id: fastoad.performances.mission
+        propulsion_id: fastoad.wrapper.propulsion.rubber_engine
+        out_file: ../workdir/SPP_study.csv
+        mission_file_path: ./CeRAS_missions.yml
+        mission_name: SPP_study
+        adjust_fuel: true
+        add_solver: true
+        is_sizing: false
+        use_initializer_iteration: true
+
     environmental_impacts:
         id: fastoad.plugin.lca
         configuration_file: './CeRAS_LCA.yml'  # path to the LCA configuration file
@@ -20,3 +35,5 @@ model:
         nonfloat_params:  # provide values for non-float LCA parameters
             model: 'remind'
             pathway: 'SSP2-PkBudg1150'
+
+    

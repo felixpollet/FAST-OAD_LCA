@@ -33,13 +33,14 @@ premise:
 # Although 'model' is a mandatory name for the top level of the model, the
 # sub-activities can be freely named by user
 model:
+    # THIS MODEL IS EXPRESSED PER KG.KM
 
     airports:
         # Name of ecoinvent activity (background)
         name: 'market for airport'
         # Specify exchange amount as a float or a formula.
         # Parameters can refer directly to existing variables in FAST-OAD or new variables.
-        amount: 6.17e-13  # amount per pax.km (obtained from ecoinvent 'transport, passenger aircraft, short haul')
+        amount: 6.17e-13 / 115.0  # 6.17e-13: amount per pax.km (ecoinvent 'transport, passenger aircraft, short haul'), assuming 115.0 kg per pax.
         # Tag activity to get its specific contribution to the LCA results
         custom_attributes:
           - attribute: 'phase'
@@ -48,13 +49,13 @@ model:
     aircraft:
         name: 'aircraft production, passenger aircraft, short haul'
         # Semi-colons ':' are not supported for LCA parameters --> to be replaced by double underscores '__'
-        amount: (data__weight__aircraft__OWE / 43100) / (lca__parameters__lifetime_cycle_number * lca__parameters__load_factor * data__TLAR__NPAX * data__mission__SPP_study__main_route__distance)
+        amount: (data__weight__aircraft__OWE / 43100) / (lca__parameters__lifetime_cycle_number * data__mission__SPP_study__payload * data__mission__SPP_study__main_route__distance)
         custom_attributes:
           - attribute: 'phase'
             value: 'aircraft production'
 
     contrails:
-        amount: data__mission__SPP_study__main_route__distance * (lca__parameters__fossil_kerosene_share + (1 - lca__parameters__fossil_kerosene_share) * lca__parameters__fuel_contrail_coefficient) / (lca__parameters__load_factor * data__TLAR__NPAX * data__mission__SPP_study__main_route__distance) # correction factor for SAFs blending
+        amount: data__mission__SPP_study__main_route__distance * (lca__parameters__fossil_kerosene_share + (1 - lca__parameters__fossil_kerosene_share) * lca__parameters__fuel_contrail_coefficient) / (data__mission__SPP_study__payload * data__mission__SPP_study__main_route__distance) # correction factor for SAFs blending
         name: 'contrail'  # This is a new biosphere flow implemented by the updated LCIA method for climate change
         categories:
           - 'air'
@@ -64,7 +65,7 @@ model:
             value: 'non-CO2 contrails'
 
     fuel:
-        amount: (data__mission__SPP_study__needed_block_fuel - data__mission__SPP_study__diversion__fuel - data__mission__SPP_study__holding__fuel - data__mission__SPP_study__reserve__fuel) / (lca__parameters__load_factor * data__TLAR__NPAX * data__mission__SPP_study__main_route__distance)
+        amount: (data__mission__SPP_study__needed_block_fuel - data__mission__SPP_study__diversion__fuel - data__mission__SPP_study__holding__fuel - data__mission__SPP_study__reserve__fuel) / (data__mission__SPP_study__payload * data__mission__SPP_study__main_route__distance)
 
         # Fossil kerosene
         kerosene:
@@ -509,6 +510,9 @@ parameters_metadata:
     - parameter: 'data__weight__aircraft__OWE'
       unit: 'kg'
 
+    - parameter: 'data__mission__SPP_study__payload'
+      unit: 'kg'
+
 
 # LCIA methods
 methods:
@@ -535,8 +539,8 @@ methods:
 
     # Endpoints
     - "('ReCiPe 2016 v1.03, endpoint (H)', 'total: natural resources', 'natural resources')"
-    #- "('ReCiPe 2016 v1.03, endpoint (H)', 'total: ecosystem quality', 'ecosystem quality')"
-    #- "('ReCiPe 2016 v1.03, endpoint (H)', 'total: human health', 'human health')"
+    - "('ReCiPe 2016 v1.03, endpoint (H)', 'total: ecosystem quality', 'ecosystem quality')"
+    - "('ReCiPe 2016 v1.03, endpoint (H)', 'total: human health', 'human health')"
 
     # Midpoints to endpoints
     - "('ReCiPe 2016 v1.03, endpoint (H)', 'human health', 'human toxicity: carcinogenic')"

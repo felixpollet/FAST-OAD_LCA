@@ -152,7 +152,7 @@ class LCAcore(om.ExplicitComponent):
             # Load LCA configuration file, build model and get LCIA methods
             _, model, methods = LCAProblemConfigurator(self.options['configuration_file']).generate()
 
-            print("Compiling LCIA functions for LCA model")
+            print("Compiling LCIA functions")
             # Compile expressions for impacts
             lambdas = agb.lca._preMultiLCAAlgebric(model, methods, axis=self.options['axis'])
             # TODO: enable multiple axes to be declared, e.g. to ventilate impacts both by phase and component.
@@ -200,9 +200,10 @@ class LCAcore(om.ExplicitComponent):
         # Declare outputs for each method and axis key
         for m in self.methods:
             m_name = bw_to_fastoad_lcia_name(m)
+            m_unit = bw.Method(m).metadata['unit'] + "/FU" if bw.Method(m).metadata['unit'] else None
             self.add_output(LCA_CHARACTERIZATION_KEY + m_name,
                             units=None,  # NB: LCA units not supported by OpenMDAO so set in description
-                            desc=bw.Method(m).metadata['unit'] + "/FU")
+                            desc=m_unit)
             if self.axis_keys:
                 for axis_key in self.axis_keys:
                     self.add_output(LCA_CHARACTERIZATION_KEY + m_name + ':' + axis_key,

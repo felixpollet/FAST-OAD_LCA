@@ -1,2 +1,9 @@
 /src/fastoad_lca/.env
 .idea
+/src/fastoad_lca/notebooks/01_CeRAS/export/
+/src/fastoad_lca/notebooks/01_CeRAS/workdir/
+/src/fastoad_lca/notebooks/01_CeRAS/process_tree.html
+/src/fastoad_lca/notebooks/01_CeRAS/unlinked.log
+/src/fastoad_lca/notebooks/01_CeRAS/.ipynb_checkpoints/
+/src/fastoad_lca/configurations/.ipynb_checkpoints/
+/unlinked.log
